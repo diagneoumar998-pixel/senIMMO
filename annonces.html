@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Annonces Immobilières - SenImmo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand navbar-brand-custom" href="index.html">
+        <i class="bi bi-buildings"></i> SenImmo
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i>Accueil</a></li>
+          <li class="nav-item"><a class="nav-link active" href="annonces.html"><i class="bi bi-grid me-1"></i>Annonces</a></li>
+          <li class="nav-item"><a class="nav-link" href="publier.html"><i class="bi bi-plus-circle me-1"></i>Publier</a></li>
+          <li class="nav-item"><a class="nav-link" href="compte.html"><i class="bi bi-person me-1"></i>Mon Compte</a></li>
+        </ul>
+        <a href="publier.html" class="btn-publish"><i class="bi bi-plus-lg"></i> Déposer une annonce</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1><i class="bi bi-grid-3x3-gap me-2"></i>Toutes les annonces</h1>
+      <p>Trouvez le bien immobilier idéal parmi nos offres</p>
+      <div class="breadcrumb-custom">
+        <a href="index.html">Accueil</a>
+        <span>/</span>
+        <span>Annonces</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filters & Results -->
+  <section class="section-padding" style="padding-top:3rem;">
+    <div class="container">
+
+      <!-- Filter Bar -->
+      <div class="filter-bar">
+        <div class="row g-3 align-items-end">
+          <div class="col-md-2">
+            <label class="form-label fw-semibold" style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--gray-600);">Type de bien</label>
+            <select class="form-select" id="filter-type">
+              <option value="">Tous</option>
+              <option value="maison">Maison</option>
+              <option value="chambre">Chambre</option>
+              <option value="terrain">Terrain</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label class="form-label fw-semibold" style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--gray-600);">Transaction</label>
+            <select class="form-select" id="filter-transaction">
+              <option value="">Toutes</option>
+              <option value="vente">Vente</option>
+              <option value="location">Location</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label class="form-label fw-semibold" style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--gray-600);">Localisation</label>
+            <input type="text" class="form-control" id="filter-location" placeholder="Ex: Dakar...">
+          </div>
+          <div class="col-md-2">
+            <label class="form-label fw-semibold" style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--gray-600);">Budget</label>
+            <select class="form-select" id="filter-budget">
+              <option value="">Tous</option>
+              <option value="0-200000">≤ 200K FCFA</option>
+              <option value="200000-500000">200K - 500K</option>
+              <option value="500000-1000000">500K - 1M</option>
+              <option value="1000000-50000000">1M - 50M</option>
+              <option value="50000000-999999999">+ 50M</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label class="form-label fw-semibold" style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--gray-600);">Chambres min</label>
+            <select class="form-select" id="filter-bedrooms">
+              <option value="">Toutes</option>
+              <option value="1">1+</option>
+              <option value="2">2+</option>
+              <option value="3">3+</option>
+              <option value="4">4+</option>
+              <option value="5">5+</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-search w-100" id="btn-reset-filters">
+              <i class="bi bi-arrow-counterclockwise"></i> Réinitialiser
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sort & View Controls -->
+      <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+        <p class="mb-0 fw-semibold" id="results-count" style="color:var(--gray-700);">0 annonce(s) trouvée(s)</p>
+        <div class="d-flex align-items-center gap-3">
+          <select class="form-select sort-select" id="sort-select" style="border:2px solid var(--gray-300);border-radius:var(--radius-sm);padding:0.5rem 1rem;font-size:0.9rem;">
+            <option value="date-desc">Plus récentes</option>
+            <option value="date-asc">Plus anciennes</option>
+            <option value="price-asc">Prix croissant</option>
+            <option value="price-desc">Prix décroissant</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Properties Grid -->
+      <div class="row" id="properties-grid">
+        <!-- Filled by JS -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="footer-brand"><i class="bi bi-buildings"></i> SenImmo</div>
+          <p class="footer-text">La plateforme immobilière de référence au Sénégal. Trouvez, publiez et gérez vos biens immobiliers en toute simplicité.</p>
+          <div class="footer-social">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-twitter-x"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4">
+          <h6>Navigation</h6>
+          <ul class="footer-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="annonces.html">Annonces</a></li>
+            <li><a href="publier.html">Publier</a></li>
+            <li><a href="compte.html">Mon Compte</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-4">
+          <h6>Catégories</h6>
+          <ul class="footer-links">
+            <li><a href="annonces.html?type=maison">Maisons</a></li>
+            <li><a href="annonces.html?type=chambre">Chambres</a></li>
+            <li><a href="annonces.html?type=terrain">Terrains</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-4">
+          <h6>Contact</h6>
+          <ul class="footer-links footer-contact">
+            <li><i class="bi bi-geo-alt-fill"></i> Dakar, Sénégal - Almadies</li>
+            <li><i class="bi bi-telephone-fill"></i> +221 77 123 45 67</li>
+            <li><i class="bi bi-envelope-fill"></i> contact@senimmo.sn</li>
+            <li><i class="bi bi-clock-fill"></i> Lun - Sam : 8h - 18h</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom text-center">
+        <p>&copy; 2026 SenImmo. Tous droits réservés. Fait avec <i class="bi bi-heart-fill" style="color:var(--danger);"></i> au Sénégal</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="back-to-top"><i class="bi bi-chevron-up"></i></button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

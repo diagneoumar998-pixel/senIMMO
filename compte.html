@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon Compte - SenImmo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand navbar-brand-custom" href="index.html">
+        <i class="bi bi-buildings"></i> SenImmo
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i>Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="annonces.html"><i class="bi bi-grid me-1"></i>Annonces</a></li>
+          <li class="nav-item"><a class="nav-link" href="publier.html"><i class="bi bi-plus-circle me-1"></i>Publier</a></li>
+          <li class="nav-item"><a class="nav-link active" href="compte.html"><i class="bi bi-person me-1"></i>Mon Compte</a></li>
+        </ul>
+        <a href="publier.html" class="btn-publish"><i class="bi bi-plus-lg"></i> Déposer une annonce</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1><i class="bi bi-person-circle me-2"></i>Mon Compte</h1>
+      <p>Gérez vos annonces, favoris et informations personnelles</p>
+      <div class="breadcrumb-custom">
+        <a href="index.html">Accueil</a>
+        <span>/</span>
+        <span>Mon Compte</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Account Section -->
+  <section class="section-padding" style="padding-top:2rem;">
+    <div class="container">
+      <div class="row g-4">
+
+        <!-- Sidebar -->
+        <div class="col-lg-3">
+          <div class="account-sidebar fade-in">
+            <div class="account-avatar">MD</div>
+            <h5 class="account-name">Mamadou Diallo</h5>
+            <p class="account-email">mamadou@email.com</p>
+            
+            <ul class="account-nav">
+              <li><a href="#" class="active" data-tab="tab-dashboard"><i class="bi bi-speedometer2"></i> Tableau de bord</a></li>
+              <li><a href="#" data-tab="tab-listings"><i class="bi bi-grid"></i> Mes annonces</a></li>
+              <li><a href="#" data-tab="tab-favorites"><i class="bi bi-heart"></i> Favoris</a></li>
+              <li><a href="#" data-tab="tab-messages"><i class="bi bi-chat-dots"></i> Messages</a></li>
+              <li><a href="#" data-tab="tab-settings"><i class="bi bi-gear"></i> Paramètres</a></li>
+              <li><a href="index.html" style="color:var(--danger) !important;"><i class="bi bi-box-arrow-left"></i> Déconnexion</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-lg-9">
+
+          <!-- Dashboard Tab -->
+          <div class="account-tab" id="tab-dashboard">
+            <div class="account-content fade-in">
+              <h4 style="font-weight:700;color:var(--dark);margin-bottom:1.5rem;">
+                <i class="bi bi-speedometer2 me-2" style="color:var(--primary);"></i>Tableau de bord
+              </h4>
+
+              <!-- Stats -->
+              <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                  <div class="account-stat-card">
+                    <div class="account-stat-icon blue"><i class="bi bi-grid"></i></div>
+                    <div class="account-stat-number">3</div>
+                    <div class="account-stat-label">Annonces publiées</div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="account-stat-card green">
+                    <div class="account-stat-icon green"><i class="bi bi-heart"></i></div>
+                    <div class="account-stat-number" id="fav-count">0</div>
+                    <div class="account-stat-label">Favoris enregistrés</div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="account-stat-card">
+                    <div class="account-stat-icon orange"><i class="bi bi-chat-dots"></i></div>
+                    <div class="account-stat-number">5</div>
+                    <div class="account-stat-label">Messages reçus</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Recent Activity -->
+              <h5 style="font-weight:700;color:var(--dark);margin-bottom:1rem;">Activité récente</h5>
+              <div class="list-group list-group-flush">
+                <div class="list-group-item d-flex align-items-center gap-3 px-0 py-3">
+                  <div style="width:40px;height:40px;border-radius:10px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;">
+                    <i class="bi bi-plus-circle" style="color:var(--primary);"></i>
+                  </div>
+                  <div>
+                    <p style="margin:0;font-weight:600;color:var(--dark);font-size:0.9rem;">Nouvelle annonce publiée</p>
+                    <small style="color:var(--gray-500);">Belle villa moderne avec piscine - Il y a 1 jour</small>
+                  </div>
+                </div>
+                <div class="list-group-item d-flex align-items-center gap-3 px-0 py-3">
+                  <div style="width:40px;height:40px;border-radius:10px;background:var(--secondary-light);display:flex;align-items:center;justify-content:center;">
+                    <i class="bi bi-chat-dots" style="color:var(--secondary);"></i>
+                  </div>
+                  <div>
+                    <p style="margin:0;font-weight:600;color:var(--dark);font-size:0.9rem;">Nouveau message reçu</p>
+                    <small style="color:var(--gray-500);">De Fatou Sow - "Intéressée par votre villa" - Il y a 2 jours</small>
+                  </div>
+                </div>
+                <div class="list-group-item d-flex align-items-center gap-3 px-0 py-3">
+                  <div style="width:40px;height:40px;border-radius:10px;background:rgba(245,158,11,0.1);display:flex;align-items:center;justify-content:center;">
+                    <i class="bi bi-heart" style="color:var(--accent);"></i>
+                  </div>
+                  <div>
+                    <p style="margin:0;font-weight:600;color:var(--dark);font-size:0.9rem;">Annonce ajoutée aux favoris</p>
+                    <small style="color:var(--gray-500);">Terrain 500m² à Diamniadio - Il y a 3 jours</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Listings Tab -->
+          <div class="account-tab" id="tab-listings" style="display:none;">
+            <div class="account-content fade-in">
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 style="font-weight:700;color:var(--dark);margin:0;">
+                  <i class="bi bi-grid me-2" style="color:var(--primary);"></i>Mes annonces
+                </h4>
+                <a href="publier.html" class="btn btn-search" style="width:auto;padding:0.5rem 1.25rem;font-size:0.9rem;">
+                  <i class="bi bi-plus-lg"></i> Nouvelle annonce
+                </a>
+              </div>
+              <div class="row" id="my-listings"></div>
+            </div>
+          </div>
+
+          <!-- Favorites Tab -->
+          <div class="account-tab" id="tab-favorites" style="display:none;">
+            <div class="account-content fade-in">
+              <h4 style="font-weight:700;color:var(--dark);margin-bottom:1.5rem;">
+                <i class="bi bi-heart me-2" style="color:var(--danger);"></i>Mes favoris
+              </h4>
+              <div class="row" id="my-favorites"></div>
+            </div>
+          </div>
+
+          <!-- Messages Tab -->
+          <div class="account-tab" id="tab-messages" style="display:none;">
+            <div class="account-content fade-in">
+              <h4 style="font-weight:700;color:var(--dark);margin-bottom:1.5rem;">
+                <i class="bi bi-chat-dots me-2" style="color:var(--primary);"></i>Messages
+              </h4>
+              
+              <!-- Message Items -->
+              <div class="list-group list-group-flush">
+                <div class="list-group-item px-0 py-3" style="cursor:pointer;">
+                  <div class="d-flex align-items-start gap-3">
+                    <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;flex-shrink:0;">FS</div>
+                    <div style="flex:1;min-width:0;">
+                      <div class="d-flex justify-content-between align-items-start">
+                        <h6 style="font-weight:700;color:var(--dark);margin:0;">Fatou Sow</h6>
+                        <small style="color:var(--gray-500);white-space:nowrap;">Il y a 2h</small>
+                      </div>
+                      <p style="margin:0.25rem 0 0;font-size:0.9rem;color:var(--gray-600);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Bonjour, je suis intéressée par votre villa aux Almadies. Est-elle toujours disponible ?</p>
+                    </div>
+                    <span class="badge rounded-pill" style="background:var(--primary);font-size:0.7rem;">Nouveau</span>
+                  </div>
+                </div>
+
+                <div class="list-group-item px-0 py-3" style="cursor:pointer;">
+                  <div class="d-flex align-items-start gap-3">
+                    <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#f97316);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;flex-shrink:0;">ON</div>
+                    <div style="flex:1;min-width:0;">
+                      <div class="d-flex justify-content-between align-items-start">
+                        <h6 style="font-weight:700;color:var(--dark);margin:0;">Ousmane Ndiaye</h6>
+                        <small style="color:var(--gray-500);white-space:nowrap;">Hier</small>
+                      </div>
+                      <p style="margin:0.25rem 0 0;font-size:0.9rem;color:var(--gray-600);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Merci pour les informations, je souhaiterais programmer une visite la semaine prochaine.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="list-group-item px-0 py-3" style="cursor:pointer;">
+                  <div class="d-flex align-items-start gap-3">
+                    <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#8b5cf6,#a78bfa);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;flex-shrink:0;">AB</div>
+                    <div style="flex:1;min-width:0;">
+                      <div class="d-flex justify-content-between align-items-start">
+                        <h6 style="font-weight:700;color:var(--dark);margin:0;">Aïssatou Ba</h6>
+                        <small style="color:var(--gray-500);white-space:nowrap;">Il y a 3j</small>
+                      </div>
+                      <p style="margin:0.25rem 0 0;font-size:0.9rem;color:var(--gray-600);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Pouvez-vous m'envoyer plus de photos de l'appartement au Plateau ?</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="list-group-item px-0 py-3" style="cursor:pointer;">
+                  <div class="d-flex align-items-start gap-3">
+                    <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--secondary),#34d399);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;flex-shrink:0;">CM</div>
+                    <div style="flex:1;min-width:0;">
+                      <div class="d-flex justify-content-between align-items-start">
+                        <h6 style="font-weight:700;color:var(--dark);margin:0;">Cheikh Mbaye</h6>
+                        <small style="color:var(--gray-500);white-space:nowrap;">Il y a 5j</small>
+                      </div>
+                      <p style="margin:0.25rem 0 0;font-size:0.9rem;color:var(--gray-600);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Le terrain à Saly est-il négociable ? Quel est le prix final ?</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="list-group-item px-0 py-3" style="cursor:pointer;">
+                  <div class="d-flex align-items-start gap-3">
+                    <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#ec4899,#f472b6);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;flex-shrink:0;">MS</div>
+                    <div style="flex:1;min-width:0;">
+                      <div class="d-flex justify-content-between align-items-start">
+                        <h6 style="font-weight:700;color:var(--dark);margin:0;">Mariama Sy</h6>
+                        <small style="color:var(--gray-500);white-space:nowrap;">Il y a 1 sem</small>
+                      </div>
+                      <p style="margin:0.25rem 0 0;font-size:0.9rem;color:var(--gray-600);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Bonjour, est-ce que le studio au Sacré-Cœur accepte les animaux de compagnie ?</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Settings Tab -->
+          <div class="account-tab" id="tab-settings" style="display:none;">
+            <div class="account-content fade-in">
+              <h4 style="font-weight:700;color:var(--dark);margin-bottom:1.5rem;">
+                <i class="bi bi-gear me-2" style="color:var(--primary);"></i>Paramètres du compte
+              </h4>
+
+              <form>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label fw-semibold">Prénom</label>
+                    <input type="text" class="form-control" value="Mamadou" style="border:2px solid var(--gray-300);border-radius:var(--radius-sm);padding:0.65rem 1rem;">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-semibold">Nom</label>
+                    <input type="text" class="form-control" value="Diallo" style="border:2px solid var(--gray-300);border-radius:var(--radius-sm);padding:0.65rem 1rem;">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-semibold">Email</label>
+                    <input type="email" class="form-control" value="mamadou@email.com" style="border:2px solid var(--gray-300);border-radius:var(--radius-sm);padding:0.65rem 1rem;">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-semibold">Téléphone</label>
+                    <input type="tel" class="form-control" value="+221 77 123 45 67" style="border:2px solid var(--gray-300);border-radius:var(--radius-sm);padding:0.65rem 1rem;">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-semibold">Ville</label>
+                    <select class="form-select" style="border:2px solid var(--gray-300);border-radius:var(--radius-sm);padding:0.65rem 1rem;">
+                      <option selected>Dakar</option>
+                      <option>Thiès</option>
+                      <option>Saint-Louis</option>
+                      <option>Mbour</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-semibold">Langue</label>
+                    <select class="form-select" style="border:2px solid var(--gray-300);border-radius:var(--radius-sm);padding:0.65rem 1rem;">
+                      <option selected>Français</option>
+                      <option>Wolof</option>
+                      <option>English</option>
+                    </select>
+                  </div>
+                </div>
+
+                <hr style="margin:2rem 0;border-color:var(--gray-200);">
+
+                <h5 style="font-weight:700;color:var(--dark);margin-bottom:1rem;">Notifications</h5>
+                <div class="form-check form-switch mb-3">
+                  <input class="form-check-input" type="checkbox" id="notif-email" checked>
+                  <label class="form-check-label" for="notif-email">Notifications par email</label>
+                </div>
+                <div class="form-check form-switch mb-3">
+                  <input class="form-check-input" type="checkbox" id="notif-sms" checked>
+                  <label class="form-check-label" for="notif-sms">Notifications par SMS</label>
+                </div>
+                <div class="form-check form-switch mb-3">
+                  <input class="form-check-input" type="checkbox" id="notif-promo">
+                  <label class="form-check-label" for="notif-promo">Offres promotionnelles</label>
+                </div>
+
+                <div class="mt-4">
+                  <button type="button" class="btn btn-submit-form" onclick="document.getElementById('toast-container') && showToast('Paramètres sauvegardés !')">
+                    <i class="bi bi-check-lg"></i> Sauvegarder les modifications
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="footer-brand"><i class="bi bi-buildings"></i> SenImmo</div>
+          <p class="footer-text">La plateforme immobilière de référence au Sénégal. Trouvez, publiez et gérez vos biens immobiliers en toute simplicité.</p>
+          <div class="footer-social">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-twitter-x"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4">
+          <h6>Navigation</h6>
+          <ul class="footer-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="annonces.html">Annonces</a></li>
+            <li><a href="publier.html">Publier</a></li>
+            <li><a href="compte.html">Mon Compte</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-4">
+          <h6>Catégories</h6>
+          <ul class="footer-links">
+            <li><a href="annonces.html?type=maison">Maisons</a></li>
+            <li><a href="annonces.html?type=chambre">Chambres</a></li>
+            <li><a href="annonces.html?type=terrain">Terrains</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-4">
+          <h6>Contact</h6>
+          <ul class="footer-links footer-contact">
+            <li><i class="bi bi-geo-alt-fill"></i> Dakar, Sénégal - Almadies</li>
+            <li><i class="bi bi-telephone-fill"></i> +221 77 123 45 67</li>
+            <li><i class="bi bi-envelope-fill"></i> contact@senimmo.sn</li>
+            <li><i class="bi bi-clock-fill"></i> Lun - Sam : 8h - 18h</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom text-center">
+        <p>&copy; 2026 SenImmo. Tous droits réservés. Fait avec <i class="bi bi-heart-fill" style="color:var(--danger);"></i> au Sénégal</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="back-to-top"><i class="bi bi-chevron-up"></i></button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Update favorites count
+    document.addEventListener('DOMContentLoaded', function() {
+      const favCount = document.getElementById('fav-count');
+      if (favCount) {
+        const favs = JSON.parse(localStorage.getItem('senimmo_favorites') || '[]');
+        favCount.textContent = favs.length;
+      }
+    });
+  </script>
+</body>
+</html>

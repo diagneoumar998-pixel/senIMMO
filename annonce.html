@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Détail Annonce - SenImmo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand navbar-brand-custom" href="index.html">
+        <i class="bi bi-buildings"></i> SenImmo
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i>Accueil</a></li>
+          <li class="nav-item"><a class="nav-link active" href="annonces.html"><i class="bi bi-grid me-1"></i>Annonces</a></li>
+          <li class="nav-item"><a class="nav-link" href="publier.html"><i class="bi bi-plus-circle me-1"></i>Publier</a></li>
+          <li class="nav-item"><a class="nav-link" href="compte.html"><i class="bi bi-person me-1"></i>Mon Compte</a></li>
+        </ul>
+        <a href="publier.html" class="btn-publish"><i class="bi bi-plus-lg"></i> Déposer une annonce</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header" style="padding-bottom:2rem;">
+    <div class="container">
+      <div class="breadcrumb-custom" style="margin-top:0;">
+        <a href="index.html">Accueil</a>
+        <span>/</span>
+        <a href="annonces.html">Annonces</a>
+        <span>/</span>
+        <span>Détail</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detail Content -->
+  <section class="section-padding" style="padding-top:2rem;" id="detail-content">
+    <div class="container">
+      <div class="row g-4">
+        <!-- Left Column - Images & Info -->
+        <div class="col-lg-8">
+          
+          <!-- Image Gallery -->
+          <div class="detail-gallery fade-in">
+            <img id="detail-main-image" src="" alt="Photo principale" class="detail-main-img">
+            <div class="detail-thumbnails" id="detail-thumbnails"></div>
+          </div>
+
+          <!-- Property Info -->
+          <div class="detail-info mt-4 fade-in">
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-3">
+              <div>
+                <span id="detail-badge" class="property-badge badge-sale" style="position:static;display:inline-block;"></span>
+                <span class="ms-2" style="font-size:0.85rem;color:var(--gray-500);" id="detail-date"></span>
+              </div>
+              <div class="detail-price">
+                <span id="detail-price"></span>
+                <span id="detail-price-suffix" style="font-size:1rem;color:var(--gray-500);font-weight:500;"></span>
+              </div>
+            </div>
+            <h2 class="detail-title" id="detail-title"></h2>
+            <div class="detail-location">
+              <i class="bi bi-geo-alt-fill"></i>
+              <span id="detail-location-text"></span>
+            </div>
+            <div class="detail-features-grid" id="detail-features"></div>
+          </div>
+
+          <!-- Description -->
+          <div class="detail-description fade-in">
+            <h4><i class="bi bi-text-paragraph me-2"></i>Description</h4>
+            <p id="detail-description-text"></p>
+          </div>
+
+          <!-- Map -->
+          <div class="map-container fade-in mt-4">
+            <div class="p-3">
+              <h4 style="font-weight:700;color:var(--dark);margin-bottom:0;"><i class="bi bi-pin-map me-2"></i>Localisation</h4>
+            </div>
+            <iframe id="map-frame" src="" allowfullscreen loading="lazy"></iframe>
+          </div>
+
+        </div>
+
+        <!-- Right Column - Contact -->
+        <div class="col-lg-4">
+          <div class="contact-card fade-in">
+            <h5 style="font-weight:700;color:var(--dark);margin-bottom:1.25rem;"><i class="bi bi-person-lines-fill me-2"></i>Contacter le propriétaire</h5>
+            
+            <div class="contact-agent">
+              <div class="contact-agent-avatar" id="agent-initials">MD</div>
+              <div class="contact-agent-info">
+                <h6 id="agent-name">Agent</h6>
+                <small>Propriétaire vérifié <i class="bi bi-patch-check-fill text-primary"></i></small>
+              </div>
+            </div>
+
+            <a href="#" class="btn-whatsapp" id="btn-whatsapp" target="_blank">
+              <i class="bi bi-whatsapp" style="font-size:1.2rem;"></i> Contacter via WhatsApp
+            </a>
+
+            <a href="#" class="btn-email" id="btn-email">
+              <i class="bi bi-envelope" style="font-size:1.1rem;"></i> Envoyer un email
+            </a>
+
+            <button class="btn-pdf" id="btn-download-pdf">
+              <i class="bi bi-file-earmark-pdf" style="font-size:1.1rem;"></i> Télécharger la fiche
+            </button>
+
+            <hr style="margin:1.5rem 0;border-color:var(--gray-200);">
+
+            <div style="background:var(--gray-100);border-radius:var(--radius-sm);padding:1rem;">
+              <h6 style="font-weight:700;font-size:0.85rem;color:var(--gray-700);margin-bottom:0.75rem;">
+                <i class="bi bi-shield-check me-1 text-success"></i> Conseils de sécurité
+              </h6>
+              <ul style="font-size:0.8rem;color:var(--gray-600);margin:0;padding-left:1rem;">
+                <li>Ne payez jamais à l'avance sans visite</li>
+                <li>Vérifiez les documents de propriété</li>
+                <li>Privilégiez les rencontres en lieu sûr</li>
+                <li>Méfiez-vous des offres trop attractives</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Similar Properties -->
+      <div class="mt-5">
+        <h3 class="section-title">Annonces similaires</h3>
+        <p class="section-subtitle">D'autres biens qui pourraient vous intéresser</p>
+        <div class="row" id="similar-properties"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="footer-brand"><i class="bi bi-buildings"></i> SenImmo</div>
+          <p class="footer-text">La plateforme immobilière de référence au Sénégal. Trouvez, publiez et gérez vos biens immobiliers en toute simplicité.</p>
+          <div class="footer-social">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-twitter-x"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4">
+          <h6>Navigation</h6>
+          <ul class="footer-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="annonces.html">Annonces</a></li>
+            <li><a href="publier.html">Publier</a></li>
+            <li><a href="compte.html">Mon Compte</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-4">
+          <h6>Catégories</h6>
+          <ul class="footer-links">
+            <li><a href="annonces.html?type=maison">Maisons</a></li>
+            <li><a href="annonces.html?type=chambre">Chambres</a></li>
+            <li><a href="annonces.html?type=terrain">Terrains</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-4">
+          <h6>Contact</h6>
+          <ul class="footer-links footer-contact">
+            <li><i class="bi bi-geo-alt-fill"></i> Dakar, Sénégal - Almadies</li>
+            <li><i class="bi bi-telephone-fill"></i> +221 77 123 45 67</li>
+            <li><i class="bi bi-envelope-fill"></i> contact@senimmo.sn</li>
+            <li><i class="bi bi-clock-fill"></i> Lun - Sam : 8h - 18h</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom text-center">
+        <p>&copy; 2026 SenImmo. Tous droits réservés. Fait avec <i class="bi bi-heart-fill" style="color:var(--danger);"></i> au Sénégal</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="back-to-top"><i class="bi bi-chevron-up"></i></button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
